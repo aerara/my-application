@@ -83,7 +83,7 @@
 
       <span>Organizations/Seminars</span>
     </div>
-    
+
     <div class="card card-small" (click)="selection.value = 'build'" tabindex="0">
         <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="0" height="24"></svg>
   
@@ -135,7 +135,29 @@
           <p>eloisejade.apawan@passerellesnumeriques.org</p>
       </pre>
       <pre *ngSwitchCase="'contact'">
-          
+          <form (ngSubmit)="onSubmit()" [formGroup]="contactForm">
+            <h1>For more inquiries:</h1>
+            <p>Name: </p><input type = "text" name="name" formControlName="name" required ngModel/>
+            <p>Email: </p><input type = "email" name="mail" formControlName="email" required ngModel pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"/>
+            <p>Contact No.: </p><input type = "number" name="cont" formControlName="cont" required ngModel/>
+            <p>Address: </p><input type = "text" name="add" formControlName="add" required ngModel/>
+            <p>Subject: </p><input type = "text" name="sub" formControlName="sub" required ngModel/>
+            <p>Message: </p><input type = "text" name="mess" formControlName="mess" required ngModel/>
+            <input type="submit" value = "S E N D" [disabled]="!contactForm.valid"/>
+          </form>
+
+          <div [hidden]="isHidden">
+            <!-- <h3>Data and Information: </h3><br>
+            {{formValue | json}} -->
+            <p>
+            <b>Firstname:</b> {{formValue.name}}<br>
+            <b>Email:</b> {{formValue.email}}<br><br>
+            <b>Contact No.:</b> {{formValue.cont}}<br><br>
+            <b>Address:</b> {{formValue.add}}<br>
+            <b>Subject:</b> {{formValue.sub}}<br>
+            <b>Message:</b> {{formValue.mess}}<br>
+            </p>
+        </div>
       </pre>
   </div>
 
